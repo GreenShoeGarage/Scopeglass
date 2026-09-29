@@ -1,0 +1,20 @@
+services:
+  scopeglass:
+    build: .
+    image: scopeglass:1.0.0-rc.1
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8765:8765"
+    volumes:
+      - ./deploy/config.docker.json:/app/config.json:ro
+      - scopeglass-data:/data
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=32m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 30s
+volumes:
+  scopeglass-data:

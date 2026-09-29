@@ -1,0 +1,8 @@
+{
+  "listen_host": "0.0.0.0",
+  "listen_port": 8765,
+  "public_origin": "http://localhost:8765",
+  "auth": {"enabled": true},
+  "allowed_cidrs": ["127.0.0.0/8", "10.0.0.0/8", "172.16.0.0/12", "192.168.0.0/16"],
+  "database": "/data/scopeglass.db"
+}

@@ -1,0 +1,30 @@
+[Unit]
+Description=Scopeglass network assessment instrument
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=scopeglass
+Group=scopeglass
+WorkingDirectory=/opt/scopeglass
+ExecStart=/usr/bin/python3 /opt/scopeglass/server.py --config /etc/scopeglass/config.json
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+UMask=0077
+StateDirectory=scopeglass
+StateDirectoryMode=0700
+NoNewPrivileges=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectSystem=strict
+ProtectHome=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictAddressFamilies=AF_INET AF_UNIX AF_NETLINK
+CapabilityBoundingSet=
+
+[Install]
+WantedBy=multi-user.target
